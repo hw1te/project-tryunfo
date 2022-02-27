@@ -22,6 +22,7 @@ class Form extends Component {
         <label htmlFor="name-input">
           Nome
           <input
+            name="cardName"
             type="text"
             data-testid="name-input"
             value={ cardName }
@@ -31,6 +32,7 @@ class Form extends Component {
         <label htmlFor="description-input">
           Descrição
           <textarea
+            name="cardDescription"
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -39,6 +41,7 @@ class Form extends Component {
         <label htmlFor="attr1-input">
           Attr01
           <input
+            name="cardAttr1"
             type="number"
             data-testid="attr1-input"
             value={ cardAttr1 }
@@ -48,6 +51,7 @@ class Form extends Component {
         <label htmlFor="attr2-input">
           Attr02
           <input
+            name="cardAttr2"
             type="number"
             data-testid="attr2-input"
             value={ cardAttr2 }
@@ -57,6 +61,7 @@ class Form extends Component {
         <label htmlFor="attr3-input">
           Attr03
           <input
+            name="cardAttr3"
             type="number"
             data-testid="attr3-input"
             value={ cardAttr3 }
@@ -66,6 +71,7 @@ class Form extends Component {
         <label htmlFor="image-input">
           Imagem
           <input
+            name="cardImage"
             type="text"
             data-testid="image-input"
             value={ cardImage }
@@ -75,6 +81,7 @@ class Form extends Component {
         <label htmlFor="rare-input">
           Raridade
           <select
+            name="cardRare"
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
@@ -86,6 +93,7 @@ class Form extends Component {
         </label>
         <label htmlFor="trunfo-input">
           <input
+            name="cardTrunfo"
             type="checkbox"
             data-testid="trunfo-input"
             checked={ cardTrunfo }
