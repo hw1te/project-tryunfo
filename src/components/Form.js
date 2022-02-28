@@ -29,6 +29,7 @@ class Form extends Component {
             onChange={ onInputChange }
           />
         </label>
+        <br />
         <label htmlFor="description-input">
           Descrição
           <textarea
