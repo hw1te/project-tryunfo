@@ -2,6 +2,12 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 
+/* Para fazer o código consultei os repositórios: https://github.com/tryber/sd-019-b-project-tryunfo/pull/81
+https://github.com/tryber/sd-019-b-project-tryunfo/pull/127
+https://github.com/tryber/sd-019-b-project-tryunfo/pull/105
+https://github.com/tryber/sd-019-b-project-tryunfo/pull/9
+ */
+
 class App extends React.Component {
   constructor() {
     super();
@@ -18,6 +24,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
     };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -25,34 +32,30 @@ class App extends React.Component {
     const inputValue = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: inputValue,
-    });
-  }
-
-  isSaveButtonDisabled() {
-    const {
-      cardName,
-      cardDescription,
-      cardImage,
-      cardRare,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-    } = this.state;
-
-    let disable = false;
-    const attr1 = parseInt(cardAttr1, 10);
-    const attr2 = parseInt(cardAttr2, 10);
-    const attr3 = parseInt(cardAttr3, 10);
-    const maxAttr = 90;
-    const minAttr = 0;
-    const attrSum = attr1 + attr2 + attr3;
-    const maxSum = 210;
-    if (!cardName || !cardDescription || !cardImage || !cardRare) disable = true;
-    if (attr1 > maxAttr || attr2 > maxAttr || attr3 > maxAttr) disable = true;
-    if (attr1 > minAttr || attr2 > minAttr || attr3 > minAttr) disable = true;
-    if (attrSum > maxSum) disable = true;
-    this.setState({
-      isSaveButtonDisabled: disable,
+    }, () => {
+      const {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+      } = this.state;
+      const max = 90;
+      const min = 0;
+      const maxSum = 210;
+      this.setState({
+        isSaveButtonDisabled: !((cardName
+          && cardDescription
+          && cardImage
+          && Number(cardAttr1) >= min
+          && Number(cardAttr1) <= max
+          && Number(cardAttr2) >= min
+          && Number(cardAttr2) <= max
+          && Number(cardAttr3) >= min
+          && Number(cardAttr3) <= max
+          && Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= maxSum)),
+      });
     });
   }
 
@@ -65,7 +68,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardRare: 'normal',
-    })
+    });
   }
 
   render() {
